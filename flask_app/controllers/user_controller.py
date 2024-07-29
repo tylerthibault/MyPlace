@@ -1,23 +1,43 @@
-from flask_app import app
+from flask_app import app, bcrypt
 from flask import render_template, redirect, session, request
 from flask_app.models import user_model
 
 
 # ********* CREATE *********
-@app.route('/users/new')
+@app.route('/users/logout')
 def user_new():
-    return render_template('/user_new.html')
+    del session['uuid']
+    return redirect('/')
+
+@app.route('/users/login', methods=['POST'])
+def user_login():
+    data = {
+        **request.form
+    }
+    if not user_model.User.validator(**data):
+        return redirect('/')
+    
+    if not user_model.User.validate_login(data):
+        return redirect('/')
+    
+    return redirect('/')
 
 @app.route('/users/create', methods=['POST'])
 def user_create():
     data = {
         **request.form,
     }
-    if not user_model.User.validator(**data):
-        return redirect('/users')
+    if not user_model.User.validate_registration(**data):
+        return redirect('/')
     
-    user_model.User.create_one(**data)
-    return redirect('/users')
+    hash_pw = bcrypt.generate_password_hash(data['password'])
+    data['password'] = hash_pw
+
+    user_id = user_model.User.create_one(**data)
+    
+    session['uuid'] = user_id
+
+    return redirect('/dashboard')
 
 # ********* READ *********
 @app.route('/users')

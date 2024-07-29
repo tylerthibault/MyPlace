@@ -1,23 +1,38 @@
 <form action="/users/create" method="post">
-    <div class="form_element">
+    <div class="form-element">
         <label for="first_name">First Name</label>
-        <input type="text" name="first_name" id="first_name">
+        <input type="text" name="first_name" id="first_name" placeholder="first_name" value="Tyler">
+        {% for message in get_flashed_messages(category_filter=['err_users_first_name']) %}
+        <p class="err-msg">{{message}}</p>
+        {% endfor %}
     </div>
-    <div class="form_element">
+    <div class="form-element">
         <label for="last_name">Last Name</label>
-        <input type="text" name="last_name" id="last_name">
+        <input type="text" name="last_name" id="last_name" placeholder="last_name" value="Tbo">
+        {% for message in get_flashed_messages(category_filter=['err_users_last_name']) %}
+        <p class="err-msg">{{message}}</p>
+        {% endfor %}
     </div>
-    <div class="form_element">
+    <div class="form-element">
         <label for="email">Email</label>
-        <input type="text" name="email" id="email">
+        <input type="text" name="email" id="email" placeholder="email" value="tt@email.com">
+        {% for message in get_flashed_messages(category_filter=['err_users_email']) %}
+        <p class="err-msg">{{message}}</p>
+        {% endfor %}
     </div>
-    <div class="form_element">
+    <div class="form-element">
         <label for="password">Password</label>
-        <input type="text" name="password" id="password">
+        <input type="password" name="password" id="password" placeholder="password" value="Thibault">
+        {% for message in get_flashed_messages(category_filter=['err_users_password']) %}
+        <p class="err-msg">{{message}}</p>
+        {% endfor %}
     </div>
-    <div class="form_element">
+    <div class="form-element">
         <label for="confirm_password">Confirm Password</label>
-        <input type="text" name="confirm_password" id="confirm_password">
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="confirm_password" value="Thibault">
+        {% for message in get_flashed_messages(category_filter=['err_users_confirm_password']) %}
+        <p class="err-msg">{{message}}</p>
+        {% endfor %}
     </div>
-    <button class="form_btn">Submit</button>
+    <button class="form-btn-success">Submit</button>
 </form>

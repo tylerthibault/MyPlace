@@ -1,0 +1,15 @@
+{% extends 'base_templates/base.html' %}
+
+{% block base_content %}
+<div class="flex">
+    <div px-5>
+        {% include 'components/dashboard_nav.html' %}
+    </div>
+    <div>
+        {% block dashboard_content %}
+        
+        {% endblock dashboard_content %}
+    </div>
+</div>
+
+{% endblock base_content %}

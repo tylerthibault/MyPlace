@@ -1,0 +1,10 @@
+<form action="/finance/budget/create" method="post">
+    <div class="form-element">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Budget Name">
+        {% for message in get_flashed_messages(category_filter=['err_budgets_name']) %}
+        <p class="err-msg">{{message}}</p>
+        {% endfor %}
+    </div>
+    <button class="form-btn-success">Create</button>
+</form>

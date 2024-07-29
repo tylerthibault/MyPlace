@@ -6,7 +6,13 @@
 </div>
 
 <div>
+    <div class="bg-SecondaryBlue text-xl font-bold flex justify-center">
+        {% for message in get_flashed_messages(category_filter=['err_users_general']) %}
+        <p class="err-msg">{{message}}</p>
+        {% endfor %}
+    </div>
     {% include 'users/register_form.html' %}
+    {% include 'users/login_form.html' %}
 </div>
 
 
